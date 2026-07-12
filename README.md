@@ -521,3 +521,361 @@ Setelah seluruh langkah selesai, Anda akan memiliki dokumentasi lengkap yang men
 * Dukungan USB/FastbootD
 
 Dokumentasi ini menjadi **fondasi** untuk tahap berikutnya, yaitu menyusun **device tree TWRP**, mengonfigurasi `BoardConfig.mk`, `recovery.fstab`, memilih kernel yang sesuai, dan melakukan proses build serta debugging TWRP.
+---
+Menurut saya itu pilihan yang tepat. Saya bahkan akan memecahnya menjadi beberapa **playbook** yang saling berkaitan, bukan satu dokumen besar. Dengan begitu, setiap playbook memiliki tujuan, input, output, dan checklist yang jelas.
+
+Saya menyarankan struktur seperti berikut.
+
+```text
+Android Recovery Research
+│
+├── Playbook-00-Prerequisites.md
+├── Playbook-01-Device-Identification.md
+├── Playbook-02-Boot-Architecture.md
+├── Playbook-03-Partition-Analysis.md
+├── Playbook-04-Boot-Image-Analysis.md
+├── Playbook-05-Recovery-Analysis.md
+├── Playbook-06-Kernel-Analysis.md
+├── Playbook-07-Device-Tree-Analysis.md
+├── Playbook-08-Filesystem-Mount.md
+├── Playbook-09-Encryption.md
+├── Playbook-10-Display-Touch.md
+├── Playbook-11-AVB.md
+├── Playbook-12-Dynamic-Partition.md
+├── Playbook-13-Build-Preparation.md
+└── Checklist.md
+```
+
+Ini lebih mirip dokumentasi internal tim Android daripada sekadar catatan.
+
+---
+
+# Contoh Format Playbook
+
+Semua playbook memiliki format yang sama.
+
+```markdown
+# Playbook XX - Nama
+
+## Tujuan
+
+## Prasyarat
+
+## Sumber Data
+
+## Tools
+
+## Langkah
+
+## Perintah
+
+## Output yang Dikumpulkan
+
+## Cara Verifikasi
+
+## Catatan
+
+## Kesimpulan
+```
+
+Jadi nanti semua playbook konsisten.
+
+---
+
+# Contoh Nyata
+
+## Playbook-01-Device-Identification.md
+
+# Tujuan
+
+Mengidentifikasi spesifikasi dasar perangkat.
+
+---
+
+## Prasyarat
+
+* USB Debugging aktif
+* ADB terpasang
+
+---
+
+## Tools
+
+* adb
+
+---
+
+## Langkah 1
+
+Pastikan perangkat terhubung.
+
+```bash
+adb devices
+```
+
+Checklist
+
+```
+☐ Device terdeteksi
+```
+
+---
+
+## Langkah 2
+
+Ambil informasi build.
+
+```bash
+adb shell getprop
+```
+
+atau
+
+```bash
+adb shell getprop ro.product.model
+adb shell getprop ro.product.device
+adb shell getprop ro.build.version.release
+adb shell getprop ro.build.version.sdk
+adb shell getprop ro.build.fingerprint
+```
+
+Checklist
+
+```
+☐ Model
+
+☐ Codename
+
+☐ Android Version
+
+☐ SDK
+
+☐ Fingerprint
+```
+
+---
+
+## Langkah 3
+
+Kernel.
+
+```bash
+adb shell uname -a
+```
+
+Checklist
+
+```
+☐ Kernel Version
+
+☐ Architecture
+```
+
+---
+
+## Output
+
+```yaml
+Brand:
+
+Model:
+
+Codename:
+
+Android:
+
+SDK:
+
+Kernel:
+
+Architecture:
+```
+
+---
+
+## Verifikasi
+
+Semua informasi berhasil diperoleh.
+
+```
+☐ PASS
+
+☐ FAIL
+```
+
+---
+
+# Playbook berikutnya
+
+Misalnya
+
+Playbook-03-Partition-Analysis.md
+
+Setiap langkah memiliki checklist.
+
+```
+☐ Dump daftar partisi
+
+☐ Identifikasi boot
+
+☐ Identifikasi vendor_boot
+
+☐ Identifikasi init_boot
+
+☐ Identifikasi vbmeta
+
+☐ Identifikasi dtbo
+
+☐ Identifikasi super
+
+☐ Identifikasi userdata
+```
+
+Perintahnya misalnya
+
+```bash
+adb shell cat /proc/partitions
+```
+
+Root
+
+```bash
+adb shell
+
+su
+
+ls -l /dev/block/by-name
+```
+
+Output
+
+```yaml
+boot:
+
+vendor_boot:
+
+init_boot:
+
+vbmeta:
+
+super:
+
+userdata:
+```
+
+---
+
+# Checklist Besar
+
+Di akhir ada satu file khusus.
+
+## Device Recovery Checklist
+
+### Device
+
+```
+☐ Model
+
+☐ Codename
+
+☐ Android
+
+☐ Kernel
+```
+
+### Boot
+
+```
+☐ Boot Header
+
+☐ Kernel
+
+☐ Ramdisk
+
+☐ Cmdline
+
+☐ DTB
+```
+
+### Partition
+
+```
+☐ boot
+
+☐ vendor_boot
+
+☐ init_boot
+
+☐ vbmeta
+
+☐ dtbo
+
+☐ super
+
+☐ userdata
+```
+
+### Recovery
+
+```
+☐ Recovery Partition
+
+☐ Recovery-as-Boot
+
+☐ FastbootD
+```
+
+### Security
+
+```
+☐ AVB
+
+☐ Encryption
+
+☐ Metadata
+```
+
+### Hardware
+
+```
+☐ Display
+
+☐ Touch
+
+☐ USB
+
+☐ Battery
+```
+
+### Build Preparation
+
+```
+☐ BoardConfig
+
+☐ recovery.fstab
+
+☐ kernel
+
+☐ DTB
+
+☐ vendor_boot
+
+☐ blobs
+```
+
+---
+
+## Yang saya rekomendasikan
+
+Kalau tujuan Anda adalah **membuat panduan lengkap pembuatan TWRP dari nol**, saya akan menyusunnya seperti dokumentasi engineering yang berurutan, misalnya sekitar **15–20 playbook**. Setiap playbook fokus pada satu topik, berisi:
+
+* tujuan analisis,
+* prasyarat,
+* perintah untuk **HP non-root**,
+* perintah untuk **HP root**,
+* perintah untuk **analisis firmware offline**,
+* contoh output,
+* cara memverifikasi hasil,
+* serta hubungan hasil analisis tersebut dengan proses build TWRP.
+
+Dengan format seperti itu, playbook tidak hanya menjadi checklist, tetapi juga dapat diikuti berulang kali untuk perangkat apa pun. Ini akan sangat mendekati workflow yang digunakan maintainer TWRP dan recovery Android di komunitas open source.
