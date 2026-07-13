@@ -35,6 +35,22 @@
 | **dtc** | Device Tree Compiler | [GitHub](https://github.com/dgibson/dtc) |
 | **extract-dtb** | Ekstrak device tree dari kernel | [GitHub](https://github.com/pbatard/extract-dtb) |
 
+### Partition & Image Tools
+
+| Tool | Keterangan | Link |
+|------|------------|------|
+| **dd** | Dump/partisi image dari block device (via ADB shell) | Built-in Linux/Android |
+| **simg2img** | Konversi sparse image ke raw image | [Android Tools](https://android.googlesource.com/platform/system/core/+/refs/heads/main/libsparse/) |
+| **img2simg** | Konversi raw image ke sparse image | Bundling dengan simg2img |
+| **imgdump** | Dump dan analisis boot.img header | [GitHub](https://github.com/nickcano/imgdump) |
+| **sbootimg** | Unpack Samsung boot.img format | [GitHub](https://github.com/nickcano/sbootimg) |
+| **mkbootimg** | Buat/pack boot.img dari komponen | [AOSP](https://android.googlesource.com/platform/system/tools/mkbootimg/) |
+| **unpackelf** | Unpack ELF boot image (Qualcomm) | Bundling dengan TWRP source |
+| **mke2fs / tune2fs** | Buat dan manage ext4 filesystem image | Built-in Linux |
+| **f2fs-tools** | Tool untuk f2fs filesystem image | [GitHub](https://github.com/ArtifexSoftware/ArtifexSoftware-f2fs-tools) |
+| **Android Image Kitchen** | Tool all-in-one unpack/repack kernel + ramdisk | [GitHub](https://github.com/osm0sis/Android-Image-Kitchen) |
+| **payload-dumper** | Ekstrak payload.bin dari OTA (dynamic partition) | [GitHub](https://github.com/nickcano/payload-dumper) |
+
 ### Perangkat Android
 
 | Kebutuhan | Keterangan |
