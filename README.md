@@ -49,7 +49,42 @@
 | **mke2fs / tune2fs** | Buat dan manage ext4 filesystem image | Built-in Linux |
 | **f2fs-tools** | Tool untuk f2fs filesystem image | [GitHub](https://github.com/ArtifexSoftware/ArtifexSoftware-f2fs-tools) |
 | **Android Image Kitchen** | Tool all-in-one unpack/repack kernel + ramdisk | [GitHub](https://github.com/osm0sis/Android-Image-Kitchen) |
-| **payload-dumper** | Ekstrak payload.bin dari OTA (dynamic partition) | [GitHub](https://github.com/nickcano/payload-dumper) |
+
+### Payload Dumper (Ekstrak dari OTA)
+
+Tool untuk mengekstrak partition images dari `payload.bin` di dalam OTA firmware.
+
+| Tool | Bahasa | Instalasi | Link |
+|------|--------|-----------|------|
+| **android-payload-dumper** | Python | `pipx install android-payload-dumper` | [GitHub](https://github.com/nickcano/payload-dumper) |
+| **payload-dumper-go** | Go | Download binary | [GitHub](https://github.com/ssut/payload-dumper-go) |
+| **payload-dumper-rust** | Rust | Download binary | [GitHub](https://github.com/rhythmcache/payload-dumper-rust) |
+| **payload_dumper** (legacy) | Python | `pip install protobuf` | [GitHub](https://github.com/vm03/payload_dumper) |
+
+#### Dependensi
+
+| Tool | Dependensi |
+|------|------------|
+| **android-payload-dumper** | Python 3.9+, httpx, protobuf, rich |
+| **payload-dumper-go** | xz (liblzma) |
+| **payload-dumper-rust** | Tidak ada (static binary) |
+| **payload_dumper (legacy)** | Python 3.6+, protobuf |
+
+#### Contoh Penggunaan
+
+```bash
+# Android Payload Dumper (Python)
+payload-dumper payload.bin
+payload-dumper firmware_ota.zip
+payload-dumper -p boot,vendor_boot payload.bin
+
+# Payload Dumper Go
+payload-dumper-go payload.bin
+payload-dumper-go -p boot payload.bin
+
+# Legacy Python
+python payload_dumper.py payload.bin
+```
 
 ### Perangkat Android
 
