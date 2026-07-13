@@ -1,0 +1,19 @@
+# Binary files (keep locally for TWRP porting)
+*.img
+*.bin
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Raw dumps (documentation is in .md files)
+mounts.txt
+crypto-props.txt
+fstab.txt
+metadata-list.txt
+display-info.txt
+input-devices.txt
+usb-config.txt
+
+# Temporary files
+*.tmp
+*.log

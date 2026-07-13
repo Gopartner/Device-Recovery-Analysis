@@ -1,3 +1,0 @@
-[ro.crypto.metadata.enabled]: [true]
-[ro.crypto.state]: [encrypted]
-[ro.crypto.type]: [file]
