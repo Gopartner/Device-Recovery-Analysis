@@ -11,6 +11,19 @@ echo "  TWRP PORTING TOOL"
 echo "  Universal - Support All Android 9+"
 echo "============================================"
 echo ""
+echo "Pilih mode:"
+echo ""
+echo "  [A] Device Mode  - Perangkat terhubung via ADB + Root"
+echo "  [B] Firmware Mode - Gunakan firmware/ROM (tanpa root)"
+echo ""
+read -p "Pilihan [A/B]: " MODE
+
+if [ "$MODE" = "B" ] || [ "$MODE" = "b" ]; then
+    bash "$SCRIPT_DIR/00-firmware-mode.sh"
+    exit 0
+fi
+
+echo ""
 echo "Pilih langkah yang ingin dijalankan:"
 echo ""
 echo "  [1] Unpack     - Bongkar boot images dari perangkat"

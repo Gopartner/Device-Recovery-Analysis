@@ -7,6 +7,7 @@ Script workflow untuk porting TWRP ke perangkat Android.
 ```
 tools/
 ├── twrp-tool.sh        # Main script (jalankan ini)
+├── 00-firmware-mode.sh  # Mode offline (tanpa root)
 ├── 01-unpack.sh        # Bongkar boot images
 ├── 02-analyze.sh       # Analisis komponen
 ├── 03-patch.sh         # Patch untuk TWRP
@@ -15,11 +16,46 @@ tools/
 └── README.md           # Dokumentasi ini
 ```
 
+## Mode Penggunaan
+
+### Mode A: Device Mode (Root)
+
+Perangkat terhubung via USB dengan root access:
+
+```bash
+bash twrp-tool.sh
+# Pilih [A] Device Mode
+# Pilih [6] Full
+```
+
+### Mode B: Firmware Mode (Tanpa Root)
+
+Gunakan firmware/ROM yang sudah didownload:
+
+```bash
+bash twrp-tool.sh
+# Pilih [B] Firmware Mode
+# Pilih sumber firmware:
+#   [1] OTA ZIP
+#   [2] payload.bin
+#   [3] Boot Images (boot.img, vendor_boot.img)
+#   [4] Stock ROM folder
+```
+
 ## Prasyarat
 
+### Device Mode
 1. **ADB** - Android Debug Bridge
 2. **Root Access** - Magisk atau KernelSU
 3. **Git Bash** / **WSL** - Untuk menjalankan script
+
+### Firmware Mode
+1. **Firmware/ROM** - OTA, payload.bin, atau boot images
+2. **payload-dumper** - Untuk extract dari OTA/payload
+   ```bash
+   pipx install android-payload-dumper
+   ```
+3. **Git Bash** / **WSL**
 
 ## Cara Penggunaan
 
