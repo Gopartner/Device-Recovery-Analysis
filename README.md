@@ -14,6 +14,45 @@
 
 ---
 
+## Tools yang Dibutuhkan
+
+### Platform Tools (Wajib)
+
+| Tool | Keterangan | Link |
+|------|------------|------|
+| **ADB** | Android Debug Bridge - komunikasi PC ke perangkat | [Download](https://developer.android.com/tools/releases/platform-tools) |
+| **Fastboot** | Flashing dan bootloader interface | Bundling dengan Platform Tools |
+
+### Firmware Analysis Tools
+
+| Tool | Keterangan | Link |
+|------|------------|------|
+| **magiskboot** | Unpack/pack boot image, vendor_boot, dll | Bundling dengan [Magisk](https://github.com/topjohnwu/Magisk/releases) |
+| **unpack_bootimg** | Unpack boot image (AOSP) | [AOSP Build Tools](https://android.googlesource.com/platform/system/tools/+) |
+| **avbtool** | Analisis Android Verified Boot (vbmeta) | Bundling dengan AOSP |
+| **lpunpack** | Unpack super.img (dynamic partition) | Bundling dengan AOSP |
+| **lpdump** | Dump info dynamic partition | Bundling dengan AOSP |
+| **dtc** | Device Tree Compiler | [GitHub](https://github.com/dgibson/dtc) |
+| **extract-dtb** | Ekstrak device tree dari kernel | [GitHub](https://github.com/pbatard/extract-dtb) |
+
+### Perangkat Android
+
+| Kebutuhan | Keterangan |
+|-----------|------------|
+| **USB Debugging** | Aktif di Developer Options |
+| **Root Access** | Magisk / KernelSU (untuk analisis lanjutan) |
+| **USB Cable** | Koneksi stabil ke PC |
+
+### System Requirements
+
+| OS | Keterangan |
+|----|------------|
+| **Linux** | Direkomendasikan (Ubuntu/Debian) |
+| **Windows** | DIDukung dengan WSL atau native |
+| **macOS** | DIDukung |
+
+---
+
 ## Daftar Isi
 
 1. [Device Identification](#1-device-identification)
