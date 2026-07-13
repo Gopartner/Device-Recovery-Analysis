@@ -558,6 +558,29 @@ Jika menggunakan firmware resmi, ekstrak file berikut:
 
 ---
 
+## TWRP Porting Tool
+
+Script workflow otomatis untuk porting TWRP:
+
+| Script | Fungsi |
+|--------|--------|
+| `twrp-tool.sh` | Main menu - jalankan ini |
+| `01-unpack.sh` | Bongkar boot images dari perangkat |
+| `02-analyze.sh` | Analisis semua komponen |
+| `03-patch.sh` | Patch untuk TWRP |
+| `04-repack.sh` | Gabungkan jadi TWRP boot image |
+
+**Cara pakai:**
+```bash
+cd tools
+bash twrp-tool.sh
+# Pilih [5] Full Workflow
+```
+
+Lihat [tools/README.md](tools/README.md) untuk dokumentasi lengkap.
+
+---
+
 ## Hasil Akhir
 
 Setelah seluruh langkah selesai, Anda akan memiliki dokumentasi lengkap yang mencakup:

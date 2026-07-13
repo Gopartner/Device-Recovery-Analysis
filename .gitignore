@@ -5,6 +5,13 @@
 *.tar.gz
 *.tar.bz2
 
+# Extracted binary files (large, keep locally)
+device-analysis/04-boot-architecture/extracted/boot/kernel
+device-analysis/04-boot-architecture/extracted/boot/ramdisk.cpio
+device-analysis/04-boot-architecture/extracted/boot/dtb
+device-analysis/04-boot-architecture/extracted/init_boot/ramdisk.cpio
+device-analysis/04-boot-architecture/extracted/vendor_boot/ramdisk.cpio
+
 # Raw dumps (documentation is in .md files)
 mounts.txt
 crypto-props.txt
