@@ -1,3 +1,7 @@
+# ============================================
+# TWRP Porting Toolkit - .gitignore
+# ============================================
+
 # Binary files (keep locally for TWRP porting)
 *.img
 *.bin
@@ -12,6 +16,9 @@ device-analysis/04-boot-architecture/extracted/boot/dtb
 device-analysis/04-boot-architecture/extracted/init_boot/ramdisk.cpio
 device-analysis/04-boot-architecture/extracted/vendor_boot/ramdisk.cpio
 
+# Work directory (generated files)
+work/
+
 # Raw dumps (documentation is in .md files)
 mounts.txt
 crypto-props.txt
@@ -24,3 +31,15 @@ usb-config.txt
 # Temporary files
 *.tmp
 *.log
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
