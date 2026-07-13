@@ -8,22 +8,22 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "============================================"
 echo "  TWRP PORTING TOOL"
-echo "  Device: Realme RMX3760 (RE58C2)"
-echo "  SoC: Unisoc UMS9230"
+echo "  Universal - Support All Android 9+"
 echo "============================================"
 echo ""
 echo "Pilih langkah yang ingin dijalankan:"
 echo ""
-echo "  [1] Unpack    - Bongkar boot images dari perangkat"
-echo "  [2] Analyze   - Analisis semua komponen"
-echo "  [3] Patch     - Patch untuk TWRP"
-echo "  [4] Repack    - Gabungkan jadi TWRP boot image"
-echo "  [5] Full      - Jalankan semua langkah"
-echo "  [6] Status    - Cek status perangkat"
-echo "  [7] Clean     - Bersihkan work directory"
+echo "  [1] Unpack     - Bongkar boot images dari perangkat"
+echo "  [2] Analyze    - Analisis semua komponen"
+echo "  [3] Patch      - Patch untuk TWRP"
+echo "  [4] Repack     - Gabungkan jadi TWRP boot image"
+echo "  [5] Auto Config- Generate config files otomatis"
+echo "  [6] Full       - Jalankan semua langkah (1-5)"
+echo "  [7] Status     - Cek status perangkat"
+echo "  [8] Clean      - Bersihkan work directory"
 echo "  [0] Exit"
 echo ""
-read -p "Pilihan [0-7]: " CHOICE
+read -p "Pilihan [0-8]: " CHOICE
 
 case $CHOICE in
     1)
@@ -39,6 +39,9 @@ case $CHOICE in
         bash "$SCRIPT_DIR/04-repack.sh"
         ;;
     5)
+        bash "$SCRIPT_DIR/05-auto-config.sh"
+        ;;
+    6)
         echo ""
         echo "Menjalankan FULL WORKFLOW..."
         echo ""
@@ -49,8 +52,10 @@ case $CHOICE in
         bash "$SCRIPT_DIR/03-patch.sh"
         echo ""
         bash "$SCRIPT_DIR/04-repack.sh"
+        echo ""
+        bash "$SCRIPT_DIR/05-auto-config.sh"
         ;;
-    6)
+    7)
         echo ""
         echo "Device Status:"
         echo "--------------"
@@ -66,7 +71,7 @@ case $CHOICE in
             echo "Tidak ada perangkat terhubung!"
         fi
         ;;
-    7)
+    8)
         echo ""
         echo "Bersihkan work directory..."
         rm -rf "$SCRIPT_DIR/../work"
